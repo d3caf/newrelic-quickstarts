@@ -22,7 +22,7 @@ runs:
             owner: owner.login,
             repo: name,
             sha: head_sha,
-            state: status,
+            state: provess.env.INPUT_STATE,
             target_url: html_url,
             context: process.env.INPUT_CONTEXT
           }
