@@ -1,6 +1,5 @@
 id: 03b4a3b9-3a59-4603-91dd-6b0ced1d62de
 slug: argocd-quickstart
-title: Argo CD
 description: |
   ## What is Argo CD?
   Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
