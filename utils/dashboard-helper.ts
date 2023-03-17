@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import * as core from '@actions/core';
 import {
   fetchPaginatedGHResults,
   filterOutTestFiles,
@@ -99,7 +100,8 @@ export const runHelper = async (
 
   if (warnings.length > 0) {
     console.log('Found warnings:', warnings);
-    warningComment = createWarningComment(warnings);
+    const warningComment = createWarningComment(warnings);
+    core.setOutput('comment', warningComment);
   }
 
   return warningComment;

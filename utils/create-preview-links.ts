@@ -1,5 +1,5 @@
-import Quickstart from './lib/Quickstart';
 import * as path from 'path';
+import * as core from '@actions/core';
 import {
   fetchPaginatedGHResults,
   filterOutTestFiles,
@@ -123,7 +123,8 @@ export const generatePreviewComment = async (
     }));
 
     if (links.length > 0) {
-      comment = createComment(links);
+      const comment = createComment(links);
+      core.setOutput('comment', comment);
     } else {
       console.log(`No quickstarts found, skipping preview`);
     }
