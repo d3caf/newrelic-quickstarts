@@ -38,7 +38,7 @@ jobs:
           git config --local user.name "${{ env.THIRD_PARTY_GIT_AUTHOR_NAME }}"
           git add ./docs/*
           git diff-index --quiet HEAD ./docs/* || git commit -m 'chore: generate schema documentation [skip ci]'
-          echo "::set-output name=commit::true"
+          echo "commit=true" >> $GITHUB_ENV
 
       - name: Temporarily disable branch protections
         id: disable-branch-protection
@@ -112,8 +112,29 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Setup workspace
-        uses: './.github/actions/bootstrap'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        working-directory: ./utils
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies
+        working-directory: ./utils
+        run: yarn install --frozen-lockfile
+
 
       - name: Install OSS CLI
         working-directory: ./utils
@@ -143,7 +164,7 @@ jobs:
             git add third_party_manifest.json
             git add THIRD_PARTY_NOTICES.md
             git commit -m 'chore: update third-party manifest and notices [skip-cd]'
-            echo "::set-output name=commit::true"
+            echo "commit=true" >> $GITHUB_ENV
           else
             echo "No change in package.json, not regenerating third-party notices"
           fi
