@@ -25,8 +25,7 @@ jobs:
         env:
           PR_URL: ${{ github.event.pull_request.url }}
         run: |
-
-          yarn create-preview-links "$PR_URL" "$PR_NUMBER"
+          cd utils && yarn create-preview-links "$PR_URL" "$PR_NUMBER"
       - name: Comment
         if: env.COMMENT != ''
         run: |
