@@ -5,8 +5,12 @@ description: |
 icon: logo.png
 install:
   primary:
-    link:
-      url: https://docs.newrelic.com/docs/logs/forward-logs/circleci-logs/
+    nerdlet:
+      requires_account: false
+      nerdletId: marketplace.install-data-source
+      nerdletState:
+        dataSourceId: circleci
+        frameworkConfigId: circleci
   fallback:
     link:
       url: https://circleci.com/docs/2.0/webhooks/
