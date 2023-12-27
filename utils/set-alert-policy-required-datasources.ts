@@ -53,7 +53,7 @@ const getQuickstartNameAndDataSources = async (
   return { hasFailed: false, results: quickstartNames };
 };
 
-const setAlertPoliciesRequiredDataSources = async (
+export const setAlertPoliciesRequiredDataSources = async (
   ghUrl: string,
   ghToken: string | undefined
 ): Promise<boolean> => {
