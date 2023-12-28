@@ -17,9 +17,6 @@ import {
 import { Policy } from 'cockatiel';
 import fetch, { Response } from 'node-fetch';
 
-const NR_API_URL = process.env.NR_API_URL || '';
-const NR_API_TOKEN = process.env.NR_API_TOKEN || '';
-
 /**
  * Build body param for NR GraphQL request
  * @param {{queryString, variables}} queryBody - query string and corresponding variables for request
@@ -43,8 +40,12 @@ export type ErrorOrNerdGraphError = Error | NerdGraphError;
  * @returns {Promise<Object>} An object with the results or errors of a GraphQL request
  */
 export const fetchNRGraphqlResults = async <Variables, ResponseData>(
-  queryBody: NerdGraphRequest<Variables>
+  queryBody: NerdGraphRequest<Variables>,
 ): Promise<NerdGraphResponseWithLocalErrors<ResponseData>> => {
+  const NR_API_URL = process.env.NR_API_URL || '';
+  const NR_API_TOKEN = process.env.NR_API_TOKEN || '';
+  console.log('URL', NR_API_URL)
+
   let results;
   let graphqlErrors: ErrorOrNerdGraphError[] = [];
 
