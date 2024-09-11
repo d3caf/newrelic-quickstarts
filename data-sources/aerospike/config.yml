@@ -1,4 +1,5 @@
 id: aerospike
+displayName: Aerospike
 description: |
   Instrument and monitor your Aerospike with the New Relic infrastructure agent. Analyze your performance data using our pre-built dashboards and alert conditions.
 install:
