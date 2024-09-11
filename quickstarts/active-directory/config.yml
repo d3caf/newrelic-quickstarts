@@ -17,7 +17,7 @@ keywords:
   - featured
   - NR1_addData
 dataSourceIds:
-  - active-directory
+  - active-directoryyyy
 alertPolicies:
   - active-directory
 dashboards:
