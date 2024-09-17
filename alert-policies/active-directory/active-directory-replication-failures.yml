@@ -2,7 +2,6 @@ name: Active Directory Replication Failures
 description: |+
   This alert is triggered when the Attempt timestamp != the Success timestamp, indicating a failure in replication between domain contollers.
 
-type: STATIC
 nrql:
   query: "FROM activeDirectoryReplicationPartners SELECT count(*) FACET server, partner WHERE lastReplicationSuccess != lastReplicationAttempt"
 

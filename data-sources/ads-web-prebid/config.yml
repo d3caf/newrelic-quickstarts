@@ -1,5 +1,4 @@
 id: ads-web-prebid
-displayName: Agent for Prebid
 description: |
   Agent to monitor web applications using Prebid.
 install:
